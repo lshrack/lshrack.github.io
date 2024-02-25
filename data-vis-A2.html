@@ -1,0 +1,524 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Vis & Society Assignment 2</title>
+	<link rel="stylesheet" href="https://vis-society.github.io/assignments/report.css" />
+	<style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+	<header>
+		<h1>
+			<small>Assignment 2</small>
+			Exploratory Data Analysis
+		</h1>
+
+		<p>
+			<strong>Lauren Shrack</strong> — <em>lshrack@mit.edu</em>
+		</p>
+	</header>
+	<main>
+		<section>
+			<br />
+			<h2>Subtheme: Speculation</h2>
+			<br />
+			
+
+			<ol>
+				<li>
+					How have trends in property sales changed over time, particularly with regards to investors? Is it possible to
+					actually visualize the trends we've been talking about in class and that have been mentioned in some of the readings,
+					where investors are crowding out the market?
+				</li>
+				<li>
+					How do the different investor 'types' (count, value, LLC, and building) overlap? This question is primarily
+					motivated by the first reading, which describes how investors are categorized based on the number, type, and value of
+					properties that they buy, as well as whether or not they do so through an LLC. The article states that they're not
+					mutually exclusive, so I'd be interested to see the relationship between these categories.
+				</li>
+				<li>
+					Based on this dataset, do sales to investors appear to correlate with rises in prices? To analyze this question, I'd be
+					interested in analyzing how price difference varies based on investor type.
+				</li>
+			</ol>
+		</section>
+
+		<section>
+			<br />
+			<h2>Discoveries & Insights</h2>
+			<br />
+
+			<h3>Initial Data Exploration</h3>
+
+			<br />
+
+			<h4>Sales Types</h4>
+			<br />
+
+			One of my first objectives in exploring the dataset was to understand which types of sales it included.
+			To examine this, I used the usage and property type fields. The property type field appeared to be a
+			supercategory of usage. For the purposes of my analysis, I wanted to determine which of these fields
+			counted as housing. I decided on the following split:
+
+			<br />
+			<br />
+
+			<ul>
+				<li>
+					RCD = housing - residential condos
+				</li><li>
+					R1F = housing - single-family homes
+				</li><li>
+					APT = housing - apartments
+				</li><li>
+					REO = housing - other residential, such as dorms and mixed use residential/commercial
+				</li><li>
+					R2F = housing - two-family homes
+				</li><li>
+					R3F = housing - three-family homes
+				</li><li>
+					R25 = housing - 2-5 family homes
+				</li>
+			</ul>
+			<br />
+			<ul>
+				<li>
+					COM = not housing - commercial
+				</li><li>
+					CNR = not housing - non-residential condos
+				</li><li>
+					EXM = not housing - churches, nonprofits, etc.
+				</li><li>
+					LND = not housing - land
+				</li><li>
+					IND = not housing - industrial
+				</li><li>
+					REC = not housing - recreational
+				</li><li>
+					OTH = not housing - other
+				</li>
+			</ul>
+
+			<br />
+
+			However, these categorizations do come with some caveats. For instance, it's not completely clear
+			whether mixed use residential/commercial should be counted as residential. I chose to count it as
+			residential since it includes housing and thus still seems relevant to an analysis of investor behavior.
+
+			<br />
+
+			<figure>
+				<img class = "center-fit" src ="property_types_all.png" alt="" />
+				<figcaption>
+				Usage, colored by property type. Blue shades represent the property types considered housing, and
+				orange shades represent those not considered housing.
+				</figcaption>
+			</figure>
+
+			As is shown in this figure, the dataset overwhelmingly consists of condo sales. This makes it difficult
+			to analyze patterns in the other housing types, so I chose to split condominium analysis from my analysis
+			of other housing types in some of the following analysis.
+
+			<br />
+			<br />
+
+			This also may be important because it's not completely clear whether rows labeled as "Condominium" are
+			actually always residential condos. I did some preliminary analysis of this by looking at addresses for
+			a few of the datapoints, but it was very difficult to tell with just a Google search whether these
+			addresses were actually residential condos or one of the other condo types. Regardless, dividing condos
+			from the rest of the data ensures that any error does not affect the rest of the analysis.
+
+			<br />
+			<br />
+
+			I produced a second version of this figure with the RCD property type excluded, to make it easier to see
+			the distribution of other property types and usages.
+
+			<figure>
+				<img class = "center-fit" src ="property_types_no_condo.png" alt="" />
+				<figcaption>
+				Usage, colored by property type, excluding the RCD property type. Blue shades represent the
+				property types considered housing, and orange shades represent those not considered housing.
+				</figcaption>
+			</figure>
+
+			This shows the relative distribution of housing types other than condos.
+
+			<br />
+			<br />
+
+			<h4>Geography</h4>
+			<br />
+
+			I was next interested in understanding the geographic distribution of the dataset. To this end, I
+			produced a simple map visualization of the number of transactions in each ZIP code. Once again, I split
+			condos into a separate map. I also removed all non-housing property types, using the splitting
+			described above.
+
+			<br />
+			
+
+			<figure>
+				<img class = "center-fit" src ="geographic_distr.png" alt="" />
+				<figcaption>
+				These maps show the number of transactions in each ZIP code. The map on the left shows all housing
+				types except for condos, while the one on the right only shows condos.
+				</figcaption>
+			</figure>
+
+			We can see that the transactions seem to be concentrated toward the center part of the city, around the
+			Back Bay area. There are also some geographic outliers, particularly in the condo transactions.
+
+			<br />
+
+			<br />
+
+			<h4>Price</h4>
+			<br />
+
+			I next started looking at some of the numeric fields in the dataset, specifically the price-related ones.
+			I started with a simple histogram of price across the transactions categorized as housing.
+
+			<figure>
+				<img class = "center-fit" src="price.png" alt="" />
+				<figcaption>
+				Price of transactions categorized as housing. Everything above $20M is filtered out, to make the graph
+				readable; the trend of a long tail continues to the right.
+				</figcaption>
+			</figure>
+
+			For this figure, I chose to filter out the right tail of the graph (all transactions >$20M). For some of
+			these transactions, it seemed like perhaps errors had been made, either in recording the price or
+			categorizing the transaction: there were rows listed as condos for as much as $300M, and when I examined
+			these points on Google Maps, they seemed to be entire skyscrapers rather individual condos. If I were
+			doing more official analysis with this dataset, I might make an effort to correct these issues. As it was,
+			I just decided to use medians rather than averages, and to keep in mind the presence of outliers in the data.
+
+			<br />
+			<br />
+
+			
+
+			I also looked at how the price varied by housing type:
+
+			<figure>
+				<img class = "center-fit" src="price_prop_type.png" alt="" />
+				<figcaption>
+				Median price of transactions by property type.
+				</figcaption>
+			</figure>
+
+			This follows the trend I would expect. There's only one datapoint for 2-5 family homes, so it makes sense that this is
+			something of an outlier. I chose to use medians instead of averages to help with the outlier
+			issue discovered in the previous figure.
+
+			<br />
+			<br />
+
+			I also looked into the price_diff field, since I thought this might be useful in understanding the change
+			in prices over time. In the process, I discovered that this field has quite a lot of null values: 23,769
+			of them, or almost half the dataset. This became relevant during some of my later analysis.
+
+			<br />
+			<br />
+
+			<h4>Temporal Distribution</h4>
+			<br />
+
+			I also wanted to examine the temporal distribution of the dataset. For this, I started with simple line charts
+			to show the number of transactions over time.
+
+			<br />
+			<br />
+
+			The first line chart shows all property types, including condos.
+
+			<figure>
+				<img class = "center-fit" src="time_all.png" alt="" />
+				<figcaption>
+				Number of transactions over time by property type, including all residential property types.
+				</figcaption>
+			</figure>
+
+			Since condos completely dominate the chart above, I also made the chart with condos excluded, to better
+			visualize trends among the other housing types.
+
+			<figure>
+				<img class = "center-fit" src="time_no_condo.png" alt="" />
+				<figcaption>
+				Number of transactions over time by property type, excluding residential condos and including all
+				other residential property types.
+				</figcaption>
+			</figure>
+
+			These graphs showed approximately what I was expecting. Data collection appears fairly consistent from
+			2000 to 2022, with expected dips during the 2008 recession and 2020 pandemic.
+			
+			<br />
+			<br />
+			
+			In the figure above, it's
+			interesting to see that 1-family homes experience a slight rise, while 2 and 3-family homes appear to
+			remain more stable. I was curious about this trend, and it led into one of my three initial questions.
+			<br />
+			<br />
+
+			<hr>
+			<br/>
+			<h3>Trends in Buyer Type Over Time</h3>
+
+			<br />
+
+			I wanted to start by examining what was driving the increase in single-family home purchases, so I broke
+			down these purchases by buyer type.
+
+			<figure>
+				<img class = "center-fit" src="single_family_time.png" alt="" />
+				<figcaption>
+					This figure shows purchases of single-family homes over time, colored by buyer type.
+				</figcaption>
+			</figure>
+
+			The figure above shows that purchases of single-family homes by non-investors have stayed fairly stable,
+			and the rise is driven mainly by increasing purchases by investors. This was interesting to me, and I
+			was then curious how this trend might play out for other housing types. I examined multi-family homes
+			(2, 3, and 2-5-family homes), as well as condominiums and apartments.
+
+			<figure>
+				<img class = "center-fit" src="multi_family_time.png" alt="" />
+				<figcaption>
+					This figure shows purchases of multi-family homes over time, colored by buyer type.
+				</figcaption>
+			</figure>
+
+			The figure above shows that the trend found for single-family homes, where investors seem to be controlling an increasing
+			share of the market, holds true in the market for multi-family homes as well. Additionally, for this market,
+			non-investor purchases have decreased significantly since 2000. Investor purchases have made up for the
+			difference. The trend appears even more drastic here than for single-family homes.
+
+			<figure>
+				<img class = "center-fit" src="condos_time.png" alt="" />
+				<figcaption>
+					This figure shows purchases of condominiums over time, colored by buyer type.
+				</figcaption>
+			</figure>
+
+			Interestingly, condos don't seem to show the same trend as single-family and multi-family homes, or at
+			least not to the same extent. While the investor share of the market does appear to have risen slightly
+			since 2000, the change is much less drastic. This might imply that condos are - for whatever reason -
+			less appealing to investors.
+
+			<figure>
+				<img class = "center-fit" src="apartment_time.png" alt="" />
+				<figcaption>
+					This figure shows purchases of apartment buildings over time, colored by buyer type.
+				</figcaption>
+			</figure>
+
+			The market for apartments is quite different, because none of the buyers are non-investors. However,
+			there does appear to be a slight trend here away from small investors toward medium and large investors.
+
+			<br/>
+			<br/>
+
+			This is interesting in the context of the ProPublica article included with this subtheme. As the article
+			discusses, many smaller landlords - who would probably be deemed small investors by this classification -
+			are being bought out by larger investors, often at the expense of tenants. The change shown in this
+			graph may reflect this reality.
+
+			<br/>
+			<br/>
+			<hr>
+			<br/>
+			<h3>Relations Between Investor Types</h3>
+			<br/>
+
+			My next question had to do with the relationships between the different investor types, and what correlations
+			might be found here: does being one type of investor (i.e., a count investor) increase the chance that you're
+			also another type of investor?
+
+			<br/>
+			<br/>
+			This first visualization shows how being a count and value investor correlates with being an LLC investor.
+			<figure>
+				<img class = "center-fit" src="count_value_llc.png" alt="" />
+				<figcaption>
+				Relationships between investor types. The table shows different intersections of count and value
+				investor types. Circle size shows the number of transactions where the buyer fell into that intersection. The coloring of the
+				pie charts shows what proportion of each set of transactions was made by LLC investors. The table only includes investors
+				categorized as both value and count investors.
+				</figcaption>
+			</figure>
+
+			As I would have expected, institutional investors - particularly institutional value investors - are
+			more likely to be LLC investors. This lines up with the first article from the subtheme - the Homes for
+			Profit analysis - which explains how LLCs allow large investors to avoid scrutiny.
+
+			<br/>
+			<br/>
+
+			To verify that this trend held with each relationship independently, I also checked how being an LLC
+			investor correlated with each other investor type.
+
+			<br/>
+			<br/>
+
+			One important note about these charts: they're based on numbers of transactions, not raw numbers of investors.
+			Since the data doesn't include identifiable investor information, I wasn't sure how else to perform this part
+			of the analysis. The charts are useful in understanding how investor types generally correlate, but I'd be hesitant to
+			actually use them anywhere, because it's a little misleading what they actually represent.
+
+			<figure>
+				<img class = "center-fit" src="value_llc.png" alt="" />
+				<figcaption>
+				Transactions broken out by value investor type, and colored by whether the investor was an LLC
+				investor. Circle size does not have meaning here. This includes only housing transactions.
+				</figcaption>
+			</figure>
+			
+			<figure>
+				<img class = "center-fit" src="count_llc.png" alt="" />
+				<figcaption>
+				Transactions broken out by count investor type, and colored by whether the investor was an LLC
+				investor. Circle size does not have meaning here. This includes only housing transactions.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img class = "center-fit" src="building_llc.png" alt="" />
+				<figcaption>
+				Transactions broken out by building/non-building investor, and colored by whether the investor was an LLC
+				investor. Circle size does not have meaning here. This includes only housing transactions.
+				</figcaption>
+			</figure>
+
+			All of these charts suggest the same thing: being a large investor (whether that's in term of count, value,
+			or building size) increases the chance that an investor will be using an LLC. This offers interesting context
+			for which entities are actually using LLCs.
+
+
+			<br />
+			<br />
+			<hr>
+			<br />
+			<h3>Correlation of Price with Investor Activity</h3>
+			<br />
+
+			For my last question about the dataset, I was interested in exploring how investor activity actually influenced
+			housing prices. First, I just graphed the median price difference percentage by investor type.
+
+			<figure>
+				<img class = "center-fit" src="price_diff_investor.png" alt="" />
+				<figcaption>
+				Median price difference by investor type.
+				</figcaption>
+			</figure>
+
+			This graph was really interesting to me, because I didn't expect the value for institutional investors to be
+			so low. I wanted to examine why this might be the case. First, just to check if it was some sort of issue with
+			data quality, and since I knew quite a lot of the price difference values were null, I looked at what percentage
+			of price difference values were null for each investor type.
+
+			<figure>
+				<img class = "center-fit" src="null_investor_type.png" alt="" />
+				<figcaption>
+				Proportion of null values for price difference percentage by investor type.
+				</figcaption>
+			</figure>
+
+			However, this did not suggest why the value was so low for institutional investors, as it's pretty similar
+			across investor types. The only possible outlier is for small investors, but they don't show unexpected behavior
+			in the previous plot.
+
+			<br />
+			<br />
+
+			My next hypothesis was that perhaps institutional investors tended to invest in properties with price
+			differences that were lower on average. To examine this, I first looked at price differency by property type
+			and property type by investor type.
+
+			<figure>
+				<img class = "center-fit" src="price_diff_property.png" alt="" />
+				<figcaption>
+				Median price difference by property type
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img class = "center-fit" src="proptype_investor_all.png" alt="" />
+				<figcaption>
+				Property type by investor type for all residential property types.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img class = "center-fit" src="proptype_investor_no_condo.png" alt="" />
+				<figcaption>
+				Property type by investor type for residential property types, excluding condos.
+				</figcaption>
+			</figure>
+
+			However, this analysis did not seem to explain why price difference was so much lower for institutional
+			investors. If anything, institutional investors seem to invest <em>less</em> in less-profitable housing
+			types: they're less likely to sell apartments or 1-family homes, two of the less profitable categories.
+
+			<br />
+			<br />
+
+			My next hypothesis was that perhaps institutional investors were simply flipping properties faster, allowing
+			them less time to appreciate and gain value. I plotted median flip horizon by investor type to check if this
+			might be the case.
+
+			<figure>
+				<img class = "center-fit" src="flip_horizon_investor.png" alt="" />
+				<figcaption>
+				Median flip horizon by investor type for residential property types, excluding condos.
+				</figcaption>
+			</figure>
+
+			This does seem to explain some of the lower price difference for institutional investors! Institutional
+			investors appear to be flipping properties more quickly, which may help to explain why their median price
+			difference is significantly smaller than for other investors.
+			
+			<br />
+			<br />
+
+			Regardless, further analysis would probably help to uncover other contributors, or factors that could
+			be skewing the analysis.
+		</section>
+
+		<br />
+		<br />
+		<section>
+			<h2>Summary</h2>
+			<br />
+
+			<p>This analysis confirmed many of my expectations about the dataset, but also opened new questions
+			   into the reasons behind some of the trends I found. My findings in the first two sections - that investors
+			   represent an increasing proportion of buyers in the housing market, and that larger investors are more likely
+			   to use LLCs - reinforced ideas from the class readings and lectures. In the third section, I was surprised to
+			   find that institutional investors experienced lower price differences than other investors, and I'm still curious
+			   if there are causes of this that I may be missing. While flip horizons did seem to provide one possible explanation,
+			   I'd be interested in performing more analysis in the future to better understand what's going on.
+			</p>
+
+			<br />
+			<br />
+		</section>
+	</main>
+</body>
+</html>
