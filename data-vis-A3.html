@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Vis & Society Assignment 3</title>
+	<link rel="stylesheet" href="https://vis-society.github.io/assignments/report.css" />
+	<style>
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+	<header>
+		<h1>
+			<small>Assignment 3</small>
+			Visualization Design
+		</h1>
+
+		<p>
+			<strong>Lauren Shrack</strong> — <em>lshrack@mit.edu</em>
+		</p>
+	</header>
+
+	<main>
+		<section>
+			<h2>Phase One: Sketching Visualizations</h2>
+
+      <figure>
+				<img class = "center-fit" src="sketch_1.png" alt="" />
+				<figcaption>
+					Sketch 1 - Line charts showing population by age, with different lines for gender and year.
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Rationale for Sketch 1:
+			</p>
+
+			<ul>
+				<li>Since this was my first sketch, the goal was primarily to get a feel for the data and understand what relationships a visualization should show.</li>
+				<li>I wanted a visualization that allowed the viewer to see the differences in population distribution both by date and by gender.</li>
+				<li>A significant flaw of this visualization is that it graphs age as though it's measured continuously, which is
+					misleading, since age is actually binned by 5 year groups here.
+				</li>
+				<li>I think that the choice to have two different variables represented by the lines themselves - year
+					and gender - makes the graph harder to interpret. Viewers have to look at both the color of the lines
+					and the marking to understand which line means what. I think it's probably a better rule of thumb
+					to only encode one variable in mark type/color, when possible.
+				</li>
+			</ul>
+
+      <figure>
+				<img class = "center-fit" src="sketch_2.png" alt="" />
+				<figcaption>
+          Sketch 2 - Population Pyramid (upside-down)
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Rationale for Sketch 2:
+			</p>
+
+			<ul>
+				<li>This sketch essentially replicates a population pyramid, though I didn't actually realize that
+					until I had started drawing the sketch. It's upside-down from the standard population pyramid
+					orientation, which could be misleading.
+				</li>
+				<li>I do like this visualization, and I can see why population pyramids are so widely used.
+					It's convenient to be able to easily compare both the relative sizes and the different distributions
+					of the 1900 and 2000 populations, and the split by gender doesn't add mental effort the way it does
+					in my first sketch.
+				</li>
+				<li>RATIONALE_3</li>
+			</ul>
+
+      <figure>
+				<img class = "center-fit" src="sketch_3.png" alt="" />
+				<figcaption>
+          Sketch 3 - Small Multiples, showing the relative population size between 1900 and 2000, split out by age group.
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Rationale for Sketch 3:
+			</p>
+
+			<ul>
+				<li>This is a very poorly designed visualization, in my opinion. It's hard to interpret and misleading. The equal
+					circle sizes seem to imply that the population at each age group is the same, which isn't true. The fact that
+					the populations at the different years are divided into segments of circles imply that they add up to some
+				meaningful whole, which also isn't true. </li>
+				<li>My goal with this visualization was to show how the proportion of the population within each age range changed
+					over time. I do think that the visualization captured this to some extent, though it takes some interpretation
+					from the viewer to figure out what it's actually showing. With a bit of analysis, it is interesting to see how
+					- for example - the number of 0-5-year-olds has only tripled from 1900 to 2000, the number of people over 90 has
+					gone up by a factor of about 41.
+				</li>
+				<li>A main takeaway from this sketch is the importance of intuitive design. The design of this visualization is
+					misleading in multiple ways, because the things one might intuitively assume to be true are not. It also makes it
+					much harder to interpret the visualization.
+				</li>
+			</ul>
+
+      <h3>Reflection</h3>
+
+      <p>
+        My main takeaway from making these sketches was the importance of intuitive design. While I enjoyed thinking
+		of more creative ways to represent the data, I still preferred Sketch 2 over the other two because it was
+		much more readable. While not everyone has necessarily seen a population pyramid, they're designed to be
+		fairly intuitive and allow multiple variables to be represented without overwhelming one another. Having two
+		overlaid like this didn't seem to detract from readability, either, since all of the numbers for 1900 were
+		smaller than those for 2000. However, making the other sketches did serve as an interesting way to reflect
+		on different take-aways from the data. Sketch 3 - while quite flawed - did present some interesting take-aways
+		on how much the makeup of society has changed since 1900.
+      </p>
+
+		</section>
+
+		<section>
+			<h2>Phase Two: Final Design</h2>
+
+			<figure>
+				<img class = "center-fit" src="pop_pyramid.png" alt="" />
+				<figcaption>
+				Final Visualization: Overlaid Population Pyramids, showing population distribution during each of the two years.
+				</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Design Process & Design Decisions</h2>
+
+			<p>
+        For my final design, I went with a population pyramid for each year, with the 1900 one overlaid on top of the 2000
+		one. While this definitely isn't the most creative design, I chose it 
+		for its intuitive nature and ability to represent multiple variables - age, population,
+		gender, and year - without overwhelming the viewer.
+		<br />
+		<br />
+		In terms of color, I chose to use blue and red, again because they seemed reasonably intuitive. While there
+		are definitely arguments for mixing up the colors used to represent the genders, population pyramids are
+		traditionally drawn in blue and pink or blue and red, so this helped make the chart easily recognizable as a
+		population pyramid and thus readable at a glance.
+		<br />
+		<br />
+		For the legend on the right, I chose to clearly label what each color represented. I was concerned that readers
+		might be confused about how year was being represented (in different shades of blue and red), so I was careful
+		to make this explicitly clear in the legend. I also hoped that this legend would make the chart more readable
+		for anyone not familiar with population pyramids.
+		<br />
+		<br />
+		In terms of scale, I was careful to make sure that the axes followed the same scale, so that comparisons
+		could accurately be made between the two sides of the visual.
+		<br />
+		<br />
+		A possible weakness of this visualization is the representation of the 2000 values as a lighter shade. While
+		I did this because I wanted to make them different shades of blue and red, it's possible that people might
+		interpret the lighter shade as meaning that these values aren't certain - for instance, that they represent
+		values in the future.
+	
+      </p>
+
+
+      <h3>Reflection</h3>
+
+      <p>
+        This visualization design process was very helpful in allowing me to approach the data in more ways than I
+		would have otherwise thought of. Having to create multiple visualizations of the same small dataset made me
+		think harder about all the possible ways to represent the same few datapoints. While I ended up with a fairly
+		standard design, I thought it was interesting that I got there not by looking up the best way to represent
+		population data, but instead through a process of trial and error: after creating my first sketch, I started
+		thinking about rotating the axes 90 degrees, and then fairly naturally stumbled across the population pyramid
+		design.
+      </p>
+		</section>
+	</main>
+</body>
+</html>
