@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Vis & Society Assignment 3</title>
+	<link rel="stylesheet" href="https://vis-society.github.io/assignments/report.css" />
+	<style>
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+	<header>
+		<h1>
+			<small>Assignment 4</small>
+			Persuasive or Deceptive Visualization?
+		</h1>
+
+		<p>
+			<strong>Lauren Shrack</strong> — <em>lshrack@mit.edu</em>
+		</p>
+	</header>
+
+	<main>
+    <h2>Proposition: Rising temperatures correlate with more natural disasters.</h2>
+
+		<section>
+      <h3>FOR the Proposition</h3>
+
+      <figure>
+				<img class = "center-fit" src="a4_images/climate_disaster_003.png" alt="" />
+				<figcaption>
+					As global temperatures rise, the number of natural disasters worldwide climbs in tandem.
+					<br />
+					<br />
+          Sources: EM-DAT, CRED / UCLouvain, Brussels, Belgium. FAO Temperature Change.
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Decisions and Rationale:
+			</p>
+
+			<ul>
+				<li><strong>Color - using red and orange to represent rising temperatures and increasing disasters, respectively
+				</strong></li>
+				<ul>
+					<li><em>Score: 1</em></li>
+					<li>Red and orange are both colors associated with warm temperatures, so I think using red for rising temperatures was reasonable. They also have negative associations, and I think it’s quite reasonable to say that natural disasters are bad. It also plays into the flame-like appearance of the graph - see below point.
+					</li>
+				</ul>
+				<br />
+				<li><strong>Color and mark type - making a graph that resembles flames
+				</strong></li>
+				<ul>
+					<li><em>Score: 0</em></li>
+					<li>I chose to use a line for temperature and an area plot for disasters, primarily to resemble flames. I think this choice cuts in both directions. It does help to evoke emotion: it suggests disaster, particularly wildfires, and I think that this helps achieve the visualization’s goal of evoking emotion about rising temperatures and natural disasters. As I described in the above point, the color choices themselves are also reasonable. However, it also somewhat suggests that the disasters are primarily wildfires or maybe extreme heat events, which isn’t true - most of the disasters in the dataset are storms and floods. It’s also not clear if evoking strong negative emotions about climate change is an earnest choice in the first place - so-called ‘doomism’ is not necessarily the best strategy to inspire action. People might lose hope, playing straight into the climate denialists’ hands.
+					</li>
+				</ul>
+				<br />
+				<li><strong>Axes - using two vertical axes
+				</strong></li>
+				<ul>
+					<li><em>Score: 0</em></li>
+					<li>We were told very specifically in class not to have dual axes, but I wasn’t sure how else to overlay these charts effectively. I wanted them to be on the same plot because there are specific trends that are most visible when they’re overlaid - there’s actually quite a bit of correlation between the small year-to-year changes in temperature and the changes in natural disasters, and these aren’t apparent when the plots are on different graphs. I don’t think this is a particularly deceptive choice, because the two graphs are showing completely different things, in different units. There is a risk that the reader will get confused which line represents which variable, but this is hopefully mitigated by the legend (and could also be true on a single axis plot with multiple lines).
+					</li>
+				</ul>
+				<br /><li><strong>Title - “Prepare for Disaster: As Temperatures Rise, the Weather Gets Worse”
+				</strong></li>
+				<ul>
+					<li><em>Score: 0</em></li>
+					<li>I don’t think this is a deceptive title, but I don’t think it’s especially productive, either. It errs on the side of doomism, suggesting a very bleak future. Rather than calling for action, it tells readers to “prepare for the worst.”
+					</li>
+				</ul>
+				<br /><li><strong>Scale - including data from the whole world
+
+				</strong></li>
+				<ul>
+					<li><em>Score: 2</em></li>
+					<li>I once again used data from the whole world, for the same (fairly earnest) reason as before - it helps increase sample size for the disaster data, which varies quite a bit from year to year.
+					</li>
+				</ul>
+				<br />
+			</ul>
+    </section>
+
+    <section>
+      <h3>AGAINST the Proposition</h3>
+
+      <figure>
+				<img class = "center-fit" src="a4_images/climate_denial_005.png" alt="" />
+				<figcaption>
+					Even as global temperatures have risen, the number of natural disasters worldwide
+					has declined since 2000.
+					<br />
+					<br />
+          Sources: EM-DAT, CRED / UCLouvain, Brussels, Belgium. FAO Temperature Change.
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Decisions and Rationale:
+			</p>
+
+			<ul>
+				<li><strong>Using 2000 as a baseline</strong></li>
+				<ul>
+					<li><em>Score: -2</em></li>
+					<li>Using a single year as a baseline for the rest of the plot is quite deceptive. While the graphs on the IMF website do use a baseline, it’s a baseline from 1951-1980 (presumably an average over those years). 2000 happens to be a year with a lot of disasters, which makes the change in disasters appear quite negative for most of the other years. However, because it’s the turn of the millennium, 2000 ‘looks like’ a reasonable baseline year, so people might not notice the sketchiness (as opposed to, say, a 1997 baseline).
+					</li>
+				</ul>
+				<br />
+				<li><strong>Filtering to 2001 and later</strong></li>
+				<ul>
+					<li><em>Score: -2</em></li>
+					<li>This is quite deceptive, given that the data goes all the way back to 1980. I chose to exclude the data from before 2000 because it showed the opposite trend; it showed a positive correlation between temperature and disasters.
+					</li>
+				</ul>
+				<br />
+				<li><strong>Coloring more disasters as red and less disasters as green
+				</strong></li>
+				<ul>
+					<li><em>Score: 2</em></li>
+					<li>I don’t think it’s deceptive to use red and green here; it doesn’t seem controversial to say that having more natural disasters is bad (red) and having fewer is good (green). It improves the plot readability and draws attention to the decreases in natural disasters from the (deceptive) baseline.
+					</li>
+				</ul>
+				<br />
+				<li><strong>Coloring rising temperatures purple</strong></li>
+				<ul>
+					<li><em>Score: 0</em></li>
+					<li>I chose a fairly neutral color for rising temperatures, which I think is a fairly neutral decision. I didn’t want to use blue because it might have been confusing (since blue is associated with cooler temperatures). Red would have made sense, but I wanted the viewer’s attention to be focused on the bottom graph, with the varied colors, so I didn’t want the colors to overlap. I also wanted to avoid negative associations that might have come with red, since the graph suggests that rising temperatures are not a bad thing.
+					</li>
+				</ul>
+				<br />
+				<li><strong>Using arrow marks</strong></li>
+				<ul>
+					<li><em>Score: 2</em></li>
+					<li>I wanted it to be clear that the values shown are changes from a baseline, not absolute values. I think the use of arrows helps with this.
+						</li>
+				</ul>
+				<br />
+				<li><strong>Title: “Warmer Weather, Fewer Disasters: Finally Some Good News on Climate”
+				</strong></li>
+				<ul>
+					<li><em>Score: -2</em></li>
+					<li>This labels the correlation that the plot attempts to show. It’s quite deceptive, because the correlation (“warmer weather, fewer disasters”) does not hold across the entire dataset, even if it (very weakly) holds for the years shown on the plot. I included “finally some good news on climate” because I was targeting this plot toward people who do believe in rising temperatures, if not the negative impacts of climate change. I wanted the plot to take advantage of people’s optimism about climate change.</li>
+				</ul>
+				<br />
+				<li><strong>Scale - including data from the whole world
+				</strong></li>
+				<ul>
+					<li><em>Score: 2</em></li>
+					<li>The disaster data varies a lot from year to year, because large natural disasters occur in small enough numbers that there’s quite a bit of variance. Including the whole world in the graph helps reduce this variance because it allows for a larger sample size.
+</li>					</ul>
+			</ul>
+    </section>
+
+    <section>
+      <h2>Final Reflection</h2>
+
+      <p>[WRITE FINAL REFLECTION PARAGRAPHS HERE.]</p>
+    </section>
+	</main>
+</body>
+</html>
